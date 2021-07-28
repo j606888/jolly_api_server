@@ -1,13 +1,23 @@
 const serverless = require('serverless-http')
 const express = require('express')
+const { errors } = require('celebrate')
+const routes = require('./src/api')
 const app = express()
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 app.get('/', (req, res) => {
-  res.send('Hello World')
+  const secret = {
+    host: process.env.POSTGRES_HOST,
+    db: process.env.POSTGRES_DB,
+    password: process.env.POSTGRES_PASSWORD,
+    name: process.env.NAME
+  }
+  
+  res.json(secret)
 })
 
-module.exports.handler = serverless(app)
+app.use('/api/v1', routes())
+app.use(errors())
 
-// app.listen(3000, () => {
-//   console.log("running on 3000")
-// })
+module.exports.handler = serverless(app)

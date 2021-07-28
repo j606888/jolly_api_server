@@ -6,22 +6,27 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/j606888/jolly_api_server.git"
-  },
+  "repository": "git+https://github.com/j606888/jolly_api_server.git",
   "keywords": [],
-  "author": "",
+  "author": "James <j606888@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/j606888/jolly_api_server/issues"
   },
   "homepage": "https://github.com/j606888/jolly_api_server#readme",
   "dependencies": {
+    "celebrate": "^15.0.0",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.6.2",
     "serverless-http": "^2.7.0"
   },
   "devDependencies": {
+    "eslint": "^7.31.0",
+    "nodemon": "^2.0.7",
+    "sequelize-cli": "^6.2.0",
     "serverless-offline": "^7.0.0"
   }
 }

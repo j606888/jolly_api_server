@@ -3,15 +3,39 @@ service: jolly-api-server
 provider:
   name: aws
   runtime: nodejs14.x
-  stage: dev
+  stage: ${opt:stage, 'development'}
   region: ap-southeast-1
 
 functions:
   app:
     handler: index.handler
+    environment:
+      POSTGRES_HOST: ${self:custom.postgresHost.${self:provider.stage}}
+      POSTGRES_DB: ${self:custom.postgresDB.${self:provider.stage}}
+      POSTGRES_USERNAME: ${self:custom.postgresUsername.${self:provider.stage}}
+      POSTGRES_PASSWORD: ${self:custom.postgresPassword.${self:provider.stage}}
     events:
       - http: ANY /
       - http: 'ANY /{proxy+}'
+
+custom:
+  stages:
+    - development
+    - preparing
+  postgresHost:
+    development: localhost
+    preparing: ${ssm:/jolly/preparing/POSTGRES_HOST~true}
+  postgresDB:
+    development: jolly_dev
+    preparing: ${ssm:/jolly/preparing/POSTGRES_DB~true}
+  postgresUsername:
+    development: dev_user
+    preparing: ${ssm:/jolly/preparing/POSTGRES_USERNAME~true}
+  postgresPassword: 
+    development: testtest
+    preparing: ${ssm:/jolly/preparing/POSTGRES_PASSWORD~true}
+  serverless-offline:
+    noPrependStageInUrl: true
 
 plugins:
   - serverless-offline

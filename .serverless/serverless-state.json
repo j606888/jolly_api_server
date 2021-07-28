@@ -173,7 +173,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/jolly-api-server/dev/1627034302735-2021-07-23T09:58:22.735Z/jolly-api-server.zip"
+                "S3Key": "serverless/jolly-api-server/dev/1627125410869-2021-07-24T11:16:50.869Z/jolly-api-server.zip"
               },
               "Handler": "index.handler",
               "Runtime": "nodejs14.x",
@@ -191,14 +191,14 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersionWXPcrpdCK5X1RjGraj6EzpNCV8GQelTxBH4wtMQNWU": {
+          "AppLambdaVersionxelYpuY41iwYYns1OLuunWMlMlxGibieT5pyV3k74A": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "nI5E10aqSkeXmK4KrRUGsBYqIECAkU4Px7NFinZfqlA="
+              "CodeSha256": "aQZtM4ijQhbe6xlMTifGLCeKeBzCciqb0b/N/t4y8x0="
             }
           },
           "ApiGatewayRestApi": {
@@ -323,7 +323,7 @@
               "AppLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1627034300546": {
+          "ApiGatewayDeployment1627125407471": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -386,7 +386,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionWXPcrpdCK5X1RjGraj6EzpNCV8GQelTxBH4wtMQNWU"
+              "Ref": "AppLambdaVersionxelYpuY41iwYYns1OLuunWMlMlxGibieT5pyV3k74A"
             },
             "Export": {
               "Name": "sls-jolly-api-server-dev-AppLambdaFunctionQualifiedArn"
@@ -504,6 +504,9 @@
       },
       "vpc": {}
     },
+    "plugins": [
+      "serverless-offline"
+    ],
     "pluginsData": {},
     "functions": {
       "app": {
@@ -522,7 +525,7 @@
         "timeout": 6,
         "runtime": "nodejs14.x",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersionWXPcrpdCK5X1RjGraj6EzpNCV8GQelTxBH4wtMQNWU"
+        "versionLogicalId": "AppLambdaVersionxelYpuY41iwYYns1OLuunWMlMlxGibieT5pyV3k74A"
       }
     },
     "configValidationMode": "warn",
@@ -536,14 +539,17 @@
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
+      },
+      "plugins": {
+        "$ref": "$[\"service\"][\"plugins\"]"
       }
     },
     "layers": {},
     "isDashboardMonitoringPreconfigured": false,
-    "artifact": "/Users/james/jolly_api_server/.serverless/jolly-api-server.zip"
+    "artifact": "/Users/jameslee/jolly/jolly_api_server/.serverless/jolly-api-server.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/jolly-api-server/dev/1627034302735-2021-07-23T09:58:22.735Z",
+    "artifactDirectoryName": "serverless/jolly-api-server/dev/1627125410869-2021-07-24T11:16:50.869Z",
     "artifact": "jolly-api-server.zip"
   }
 }
