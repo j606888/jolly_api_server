@@ -14,9 +14,12 @@ functions:
       POSTGRES_DB: ${self:custom.postgresDB.${self:provider.stage}}
       POSTGRES_USERNAME: ${self:custom.postgresUsername.${self:provider.stage}}
       POSTGRES_PASSWORD: ${self:custom.postgresPassword.${self:provider.stage}}
+      PASSWORD_SALT: ${self:custom.passwordSalt.${self:provider.stage}}
+      REFRESH_TOKEN_SALT: ${self:custom.refreshTokenSalt.${self:provider.stage}}
+      JWT_SALT: ${self:custom.jwtSalt.${self:provider.stage}}
     events:
       - http: ANY /
-      - http: 'ANY /{proxy+}'
+      - http: "ANY /{proxy+}"
 
 custom:
   stages:
@@ -31,9 +34,18 @@ custom:
   postgresUsername:
     development: dev_user
     preparing: ${ssm:/jolly/preparing/POSTGRES_USERNAME~true}
-  postgresPassword: 
+  postgresPassword:
     development: testtest
     preparing: ${ssm:/jolly/preparing/POSTGRES_PASSWORD~true}
+  passwordSalt:
+    development: $2a$10$ZWx6iy2JBF/cS.M0m1d4OO
+    preparing: ${ssm:/jolly/preparing/PASSWORD_SALT~true}
+  refreshTokenSalt:
+    development: $2a$10$BNgqzHmTe6YiCh1i80Kx9u
+    preparing: ${ssm:/jolly/preparing/REFRESH_TOKEN_SALT~true}
+  jwtSalt:
+    development: $2a$10$n7aYapeRczXaLIjOCFuB/O
+    preparing: ${ssm:/jolly/preparing/JWT_SALT~true}
   serverless-offline:
     noPrependStageInUrl: true
 

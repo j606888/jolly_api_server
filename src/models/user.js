@@ -3,8 +3,16 @@ const { Model } = require("sequelize")
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    static associate() {
+    static associate() {}
 
+    basicInfo() {
+      const result = {
+        id: this.id,
+        name: this.name,
+        email: this.email,
+      }
+
+      return result
     }
   }
 
